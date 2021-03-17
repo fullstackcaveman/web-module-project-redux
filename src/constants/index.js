@@ -1,2 +1,3 @@
 export const ADD_FEATURE = 'ADD_FEATURE';
 export const ADD_PRICE = 'ADDITIONAL_PRICE';
+export const REMOVE_FEATURE = 'REMOVE_FEATURE';

@@ -1,4 +1,4 @@
-import { ADD_FEATURE, ADD_PRICE } from '../constants';
+import { ADD_FEATURE, ADD_PRICE, REMOVE_FEATURE } from '../constants';
 
 export const initialState = {
 	additionalPrice: 0,
@@ -31,6 +31,19 @@ export const carBuilderReducer = (state = initialState, action) => {
 			return {
 				...state,
 				additionalPrice: state.additionalPrice + action.payload,
+			};
+		case REMOVE_FEATURE:
+			return {
+				...state,
+				additionalPrice: state.additionalPrice - action.payload.price,
+				car: {
+					...state.car,
+					features: [
+						...state.car.features.filter(
+							(element) => element !== action.payload
+						),
+					],
+				},
 			};
 		default:
 			return state;
