@@ -1,3 +1,5 @@
+import { ADD_FEATURE, ADD_PRICE } from '../constants';
+
 export const initialState = {
 	additionalPrice: 0,
 	car: {
@@ -9,7 +11,7 @@ export const initialState = {
 	},
 	additionalFeatures: [
 		{ id: 1, name: 'V-6 engine', price: 1500 },
-		{ id: 2, name: 'Racing detail package', price: 1500 },
+		{ id: 2, name: 'Racing detail package', price: 2500 },
 		{ id: 3, name: 'Premium sound system', price: 500 },
 		{ id: 4, name: 'Rear spoiler', price: 250 },
 	],
@@ -17,6 +19,19 @@ export const initialState = {
 
 export const carBuilderReducer = (state = initialState, action) => {
 	switch (action.type) {
+		case ADD_FEATURE:
+			return {
+				...state,
+				car: {
+					...state.car,
+					features: [...state.car.features, action.payload],
+				},
+			};
+		case ADD_PRICE:
+			return {
+				...state,
+				additionalPrice: state.additionalPrice + action.payload,
+			};
 		default:
 			return state;
 	}
