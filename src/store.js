@@ -1,10 +1,14 @@
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { carBuilderReducer } from './reducers/carBuilderReducer';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 const reducer = combineReducers({
 	carBuilder: carBuilderReducer,
 });
 
-const store = createStore(reducer);
+const middleware = [thunk, logger];
+
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 export default store;
